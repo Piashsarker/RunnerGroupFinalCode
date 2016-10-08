@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.alt_project.www.alp_project.List.LeaveDaysRequiredList;
 import com.alt_project.www.alp_project.List.LeaveTypeList;
 import com.alt_project.www.alp_project.R;
 import com.alt_project.www.alp_project.Session.SessionManager;
@@ -123,7 +122,7 @@ public class LeaveInsert extends AppCompatActivity implements View.OnClickListen
             /**
              * Calling JSON
              */
-            Call<LeaveTypeList> call = api.getLeaveTypeList(user.get(sessionManager.KEY_KEY), "LEAVETYPE", user.get(sessionManager.KEY_EMPLOYEE_ID));
+            Call<LeaveTypeList> call = api.getLeaveTypeList(user.get(SessionManager.KEY_KEY), "LEAVETYPE", user.get(SessionManager.KEY_EMPLOYEE_ID));
 
             /**
              * Enqueue Callback will be call when get response...
@@ -236,67 +235,7 @@ public class LeaveInsert extends AppCompatActivity implements View.OnClickListen
 
     public void saveOnClick(View view) {
 
-        handOverId = etHo.getText().toString();
-        reason = etReason.getText().toString();
-        phone = etPhone.getText().toString();
-        
-        if(isNetworkConnected()){
 
-            final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Leave");
-            progressDialog.setMessage("Data Inserting.....");
-            progressDialog.show();
-
-
-
-
-               if(!toDate.isEmpty() && !fromDate.isEmpty() && phone.length()==11 && !reason.isEmpty() && !handOverId.isEmpty()){
-                   getLeaveBalance(fromDate, toDate);
-                   int leaveBalance = Integer.parseInt(toDate.substring(0,2)) - Integer.parseInt(fromDate.substring(0,2));
-                   if(leaveBalanceArrayList.get(0).getLeaveBalance()<=leaveBalance){
-                   ApiService apiService = RetroClient.getApiService();
-
-                   Call<ResponseBody>  leaveCall = apiService.postLeave(user.get(sessionManager.KEY_KEY),"POST",user.get(sessionManager.KEY_EMPLOYEE_ID),fromDate,toDate,phone,leaveId,reason,user.get(sessionManager.KEY_USER_ID),handOverId);
-
-                   leaveCall.enqueue(new Callback<ResponseBody>() {
-                       @Override
-                       public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                           progressDialog.dismiss();
-                           if (response.isSuccess()){
-                               progressDialog.dismiss();
-                               Toast.makeText(LeaveInsert.this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
-                               postMessage();
-                           }
-                           else {
-                               Toast.makeText(LeaveInsert.this, "Data Insert Fail", Toast.LENGTH_SHORT).show();
-                           }
-                       }
-
-                       @Override
-                       public void onFailure(Call<ResponseBody> call, Throwable t) {
-                           progressDialog.dismiss();
-                           alertDialog.showDialog("ERROR!","SERVER ERROR");
-
-                       }
-                   });
-
-               }
-                   else{
-                       Toast.makeText(LeaveInsert.this, "You have not enough leave balance", Toast.LENGTH_SHORT).show();
-                   }
-           }
-
-
-     else{
-                   Toast.makeText(LeaveInsert.this, "Insert All Fields", Toast.LENGTH_SHORT).show();
-               }
-
-
-
-        }
-        else{
-            alertDialog.showDialog("NO INTERNET!","Please Enable WIFI or Mobile Data");
-        }
 
 
 
@@ -360,58 +299,10 @@ public class LeaveInsert extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    public void getLeaveBalance(String fromDate, String toDate) {
-
-        if(isNetworkConnected()){
-
-            ApiService api = RetroClient.getApiService();
-
-            /**
-             * Calling JSON
-             */
-            Call<LeaveDaysRequiredList> call = api.getLeaveDays(user.get(sessionManager.KEY_KEY), "GETLEAVEBALANCE", user.get(sessionManager.KEY_EMPLOYEE_ID),leaveId,fromDate,toDate);
-
-            /**
-             * Enqueue Callback will be call when get response...
-             */
-            call.enqueue(new Callback<LeaveDaysRequiredList>() {
-                @Override
-                public void onResponse(Call<LeaveDaysRequiredList> call, Response<LeaveDaysRequiredList> response) {
-                    //Dismiss Dialog
-
-                    if (response.isSuccess()) {
-                        /**
-                         * Got Successfully
-                         */
-                        leaveBalanceArrayList = response.body().getLeaveBalance();
-
-
-                    } else {
-                        alertDialog.showDialog("EMPTY!","Data Not Found");
-                    }
-
-
-                }
 
 
 
-                @Override
-                public void onFailure(Call<LeaveDaysRequiredList> call, Throwable t) {
 
-                    Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_LONG).show();
-                }
-            });
-
-        }
-
-        else
-
-        {
-            alertDialog.showDialog("NO INTERNET!","Please Enable WIFI or Mobile Data");
-
-        }
-
-    }
 
 }
 
