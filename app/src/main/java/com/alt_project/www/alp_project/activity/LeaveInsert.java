@@ -39,6 +39,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LeaveInsert extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+    Button btnFrom, btnTo;
+    int leaveId = 0;
+    Dialog alertDialog;
     private EditText fromDateEtxt, toDateEtxt, etHo, etReason, etPhone;
     private String fromDate, toDate,  handOverId, reason, phone;
     private DatePickerDialog fromDatePickerDialog;
@@ -48,12 +51,7 @@ public class LeaveInsert extends AppCompatActivity implements View.OnClickListen
     private ArrayList<LeaveType> leaveTypes;
     private HashMap<String, String> user;
     private ArrayList<LeaveBalance> leaveBalanceArrayList;
-    Button btnFrom , btnTo;
-    int leaveId =0;
-
     private String leaveTypeSelected;
-    Dialog alertDialog ;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -236,15 +234,27 @@ public class LeaveInsert extends AppCompatActivity implements View.OnClickListen
     public void saveOnClick(View view) {
 
 
+        if (leaveBalance() >= requestLeaveDays()) {
+
+        } else {
 
 
+        }
 
 
     }
 
+    private int requestLeaveDays() {
+        return 0;
+    }
+
+    private int leaveBalance() {
+        return 0;
+    }
+
     private void postMessage() {
 
-        String reportingBossNumber = user.get(sessionManager.KEY_REPORTING_MOBILE);
+        String reportingBossNumber = user.get(SessionManager.KEY_REPORTING_MOBILE);
         if (reportingBossNumber.length()==11){
             reportingBossNumber = "88"+reportingBossNumber;
             final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -253,7 +263,7 @@ public class LeaveInsert extends AppCompatActivity implements View.OnClickListen
             progressDialog.show();
             ApiServiceMessage apiServiceMessage = RetroClientMessage.getApiService();
 
-            Call<ResponseBody> messageCall = apiServiceMessage.postMessage(user.get(sessionManager.KEY_MSG_USER_NAME),user.get(sessionManager.KEY_MSG_PASSWORD),reportingBossNumber, user.get(sessionManager.KEY_MSG_BRAND_NAME),user.get(sessionManager.KEY_LEAVE_REQUEST_MESSAGE)+"\n"+user.get(sessionManager.KEY_EMPLOYEE_NAME)+"\n"+user.get(sessionManager.KEY_DEPARTMENT),"0/1");
+            Call<ResponseBody> messageCall = apiServiceMessage.postMessage(user.get(SessionManager.KEY_MSG_USER_NAME), user.get(SessionManager.KEY_MSG_PASSWORD), reportingBossNumber, user.get(SessionManager.KEY_MSG_BRAND_NAME), user.get(SessionManager.KEY_LEAVE_REQUEST_MESSAGE) + "\n" + user.get(SessionManager.KEY_EMPLOYEE_NAME) + "\n" + user.get(SessionManager.KEY_DEPARTMENT), "0/1");
 
             messageCall.enqueue(new Callback<ResponseBody>() {
                 @Override
