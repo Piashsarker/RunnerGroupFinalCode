@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
  * Created by pt on 10/8/16.
  */
 public class LeaveBalance {
-
     @SerializedName("LeaveBalance")
     @Expose
     private Integer leaveBalance;

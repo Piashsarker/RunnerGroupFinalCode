@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.alt_project.www.alp_project.List.LeaveDaysRequiredList;
 import com.alt_project.www.alp_project.List.LeaveTypeList;
 import com.alt_project.www.alp_project.R;
 import com.alt_project.www.alp_project.Session.SessionManager;
@@ -30,6 +31,7 @@ import com.alt_project.www.alp_project.retrofit.RetroClientMessage;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -44,20 +46,22 @@ public class LeaveInsert extends AppCompatActivity implements View.OnClickListen
     Dialog alertDialog;
     private EditText fromDateEtxt, toDateEtxt, etHo, etReason, etPhone;
     private String fromDate, toDate,  handOverId, reason, phone;
+    private Date fromDays, toDays;
     private DatePickerDialog fromDatePickerDialog;
     private DatePickerDialog toDatePickerDialog;
     private SimpleDateFormat dateFormatter ;
     private SessionManager sessionManager;
-    private ArrayList<LeaveType> leaveTypes;
+    private ArrayList<LeaveType> leaveTypes = new ArrayList<>();
     private HashMap<String, String> user;
-    private ArrayList<LeaveBalance> leaveBalanceArrayList;
-    private String leaveTypeSelected;
+    private ArrayList<LeaveBalance> leaveBalanceArrayList = new ArrayList<>();
+    private String leaveTypeSelected = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leave_insert);
         toolbarSetup();
+
         alertDialog = new Dialog(LeaveInsert.this);
         sessionManager = new SessionManager(getApplicationContext());
         sessionManager.checkLogin();
@@ -69,6 +73,9 @@ public class LeaveInsert extends AppCompatActivity implements View.OnClickListen
         loadLeaveType();
 
         String currentDate = dateFormatter.format(Calendar.getInstance().getTime());
+        fromDays = Calendar.getInstance().getTime();
+        toDays = Calendar.getInstance().getTime();
+
         fromDateEtxt.setText(currentDate);
         fromDate = currentDate;
 
@@ -85,6 +92,7 @@ public class LeaveInsert extends AppCompatActivity implements View.OnClickListen
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
                 fromDate = dateFormatter.format(newDate.getTime());
+                fromDays = newDate.getTime();
                 fromDateEtxt.setText(fromDate);
             }
 
@@ -96,6 +104,7 @@ public class LeaveInsert extends AppCompatActivity implements View.OnClickListen
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
                 toDate = dateFormatter.format(newDate.getTime());
+                toDays = newDate.getTime();
                 toDateEtxt.setText(toDate);
             }
 
@@ -233,23 +242,116 @@ public class LeaveInsert extends AppCompatActivity implements View.OnClickListen
 
     public void saveOnClick(View view) {
 
+        phone = etPhone.getText().toString();
+        reason = etReason.getText().toString();
+        handOverId = etHo.getText().toString();
 
-        if (leaveBalance() >= requestLeaveDays()) {
 
+        if (leaveId != 0 && !handOverId.isEmpty() && !reason.isEmpty() && !phone.isEmpty()) {
+            if (leaveBalance() >= requestLeaveDays()) {
+                final ProgressDialog progressDialog = new ProgressDialog(this);
+                progressDialog.setTitle("Sending..");
+                progressDialog.setMessage("Leave Data Sending");
+                progressDialog.show();
+
+                ApiService apiService = RetroClient.getApiService();
+
+                Call<ResponseBody> call = apiService.postLeave(user.get(SessionManager.KEY_KEY), "POST", user.get(SessionManager.KEY_EMPLOYEE_ID), fromDate, toDate, phone, leaveId, reason, user.get(SessionManager.KEY_EMPLOYEE_ID), handOverId);
+
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.code() == 200) {
+                            progressDialog.dismiss();
+                            alertDialog.showDialog("Success", "Your Leave Request Sent");
+                            postMessage();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        alertDialog.showDialog("Error", "Server Error");
+                    }
+                });
+
+
+            } else {
+                alertDialog.showDialog("Sorry", "Not Enough Leave");
+
+            }
         } else {
-
-
+            alertDialog.showDialog("REQUIRED", "Insert All Fields");
         }
+
 
 
     }
 
     private int requestLeaveDays() {
-        return 0;
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Leave Days Checking");
+        progressDialog.setTitle("Checking");
+        progressDialog.show();
+
+        ApiService apiService = RetroClient.getApiService();
+
+        Call<LeaveDaysRequiredList> call = apiService.getLeaveDays(user.get(SessionManager.KEY_KEY), "GETLEAVEBALANCE", user.get(SessionManager.KEY_EMPLOYEE_ID), leaveId, fromDate, toDate);
+
+        call.enqueue(new Callback<LeaveDaysRequiredList>() {
+            @Override
+            public void onResponse(Call<LeaveDaysRequiredList> call, Response<LeaveDaysRequiredList> response) {
+                if (response.isSuccess()) {
+                    progressDialog.dismiss();
+                    leaveBalanceArrayList = response.body().getLeaveBalance();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<LeaveDaysRequiredList> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(LeaveInsert.this, "Leave Balance Not Found", Toast.LENGTH_SHORT).show();
+            }
+        });
+        if (leaveBalanceArrayList.isEmpty()) {
+            return 0;
+        } else {
+            return leaveBalanceArrayList.get(0).getLeaveDuration();
+        }
     }
 
     private int leaveBalance() {
-        return 0;
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Leave Days Checking");
+        progressDialog.setTitle("Checking");
+        progressDialog.show();
+
+        ApiService apiService = RetroClient.getApiService();
+
+        Call<LeaveDaysRequiredList> call = apiService.getLeaveDays(user.get(SessionManager.KEY_KEY), "GETLEAVEBALANCE", user.get(SessionManager.KEY_EMPLOYEE_ID), leaveId, fromDate, toDate);
+
+        call.enqueue(new Callback<LeaveDaysRequiredList>() {
+            @Override
+            public void onResponse(Call<LeaveDaysRequiredList> call, Response<LeaveDaysRequiredList> response) {
+                if (response.isSuccess()) {
+                    progressDialog.dismiss();
+                    leaveBalanceArrayList = response.body().getLeaveBalance();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<LeaveDaysRequiredList> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(LeaveInsert.this, "Leave Balance Not Found", Toast.LENGTH_SHORT).show();
+            }
+        });
+        if (leaveBalanceArrayList.isEmpty()) {
+            return 0;
+        } else {
+            return leaveBalanceArrayList.get(0).getLeaveBalance();
+        }
     }
 
     private void postMessage() {

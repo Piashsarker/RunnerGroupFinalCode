@@ -11,7 +11,6 @@ import java.util.ArrayList;
  */
 public class LeaveDaysRequiredList {
 
-
     @SerializedName("LeaveBalance")
     @Expose
     private ArrayList<LeaveBalance> leaveBalance = new ArrayList<LeaveBalance>();
@@ -33,6 +32,5 @@ public class LeaveDaysRequiredList {
     public void setLeaveBalance(ArrayList<LeaveBalance> leaveBalance) {
         this.leaveBalance = leaveBalance;
     }
-
 
 }
