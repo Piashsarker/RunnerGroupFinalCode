@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical"
+    tools:context="com.alt_project.www.piashsarker.activity.ChargeHandOver">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar">
+
+
+    </include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/btnChargeHandOver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:drawableLeft="@android:drawable/ic_menu_recent_history"
+            android:onClick="btnChargeHanOverOnClick"
+            android:text="Charge Hand Over"
+            android:textColor="@color/background_color" />
+
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@android:drawable/ic_input_add"
+            android:onClick="btnLeaveOnClick"
+            android:text="Leave"
+            android:textColor="@color/background_color" />
+
+        <Button
+            android:id="@+id/btnTour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@android:drawable/ic_menu_recent_history"
+            android:onClick="btnTourOnClick"
+            android:text="Tour"
+            android:textColor="@color/background_color" />
+
+
+        <Button
+            android:id="@+id/btnLeaveAndTourReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@android:drawable/ic_menu_recent_history"
+            android:onClick="btnOnDutyOnClick"
+            android:text="On Duty"
+            android:textColor="@color/background_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:text="RUNNER GROUP"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#FFF" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

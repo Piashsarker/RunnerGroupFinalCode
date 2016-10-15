@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/nav_item_home"
+        android:title="Home"></item>
+
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_item_memo"
+                android:title="Memo"></item>
+
+
+            <item
+                android:id="@+id/nav_item_hr_data"
+                android:title="HR Data"></item>
+            <item
+                android:id="@+id/nav_item_recommendation"
+                android:title="Recommendation"></item>
+
+            <item
+                android:id="@+id/nav_item_logout"
+                android:title="Logout"></item>
+
+            <item
+                android:id="@+id/nav_item_exit"
+                android:title="Exit" />
+
+
+        </menu>
+    </item>
+
+
+</menu>

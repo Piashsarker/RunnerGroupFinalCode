@@ -1,0 +1,37 @@
+<resources>
+
+
+    <string name="title_activity_welcome">Welcome</string>
+    <string name="app_name">Runner Portal</string>
+
+
+    <!--LoginActivity Activity String Values -->
+    <string name="btn_sign_in">Sign In</string>
+    <string name="hint_email">Enter Username</string>
+    <string name="hint_password">Enter Password</string>
+    <string name="err_msg_email">Enter Valid Username</string>
+    <string name="err_msg_password">Enter Valid Password</string>
+
+    <!--Navigation Drawer String Values -->
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_memo">MemoActivity</string>
+
+    <string name="sent"> Sent</string>
+    <string name="contact"> Contact</string>
+    <string name="attachment">Attachment</string>
+    <string name="memo_hint">Memo Body</string>
+    <string name="office_id">Office ID</string>
+    <string name="subject">Subject</string>
+    <string name="search">Search</string>
+    <string name="refresh">Refresh</string>
+    <string name="tour_type">Select Tour Type</string>
+    <string name="add">Add</string>
+    <string name="forward">Forward</string>
+    <string name="Recipients">recipients</string>
+    <string name="recipients">Recipients</string>
+</resources>

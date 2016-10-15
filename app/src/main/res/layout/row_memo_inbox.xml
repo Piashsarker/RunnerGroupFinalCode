@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:id="@+id/inbox_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#e7dede"
+        android:orientation="vertical"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:id="@+id/senderId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="5dp"
+            android:text="Sanjida Islam Chowdhury"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/subject"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:text="Final Check Of Attendance"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="15 March 2015, 10.23AM"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
