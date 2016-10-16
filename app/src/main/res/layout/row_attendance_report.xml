@@ -7,7 +7,7 @@
     android:background="#dedede"
     android:clickable="true"
     android:orientation="vertical"
-    tools:context="com.alt_project.www.piashsarker.activity.AttendenceReportActivity">
+    tools:context="com.runnergroup.www.piashsarker.activity.AttendenceReportActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

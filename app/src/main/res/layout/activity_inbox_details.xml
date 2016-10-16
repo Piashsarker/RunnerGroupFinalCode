@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:orientation="vertical"
-    tools:context="com.alt_project.www.piashsarker.activity.InboxDetails">
+    tools:context="com.runnergroup.www.piashsarker.activity.InboxDetails">
 
 
     <include layout="@layout/toolbar"></include>

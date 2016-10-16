@@ -6,7 +6,7 @@
     android:background="#cce6ff"
 
     android:orientation="vertical"
-    tools:context="com.alt_project.www.piashsarker.activity.AttendenceReportActivity">
+    tools:context="com.runnergroup.www.piashsarker.activity.AttendenceReportActivity">
 
     <include layout="@layout/toolbar"></include>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.alt_project.www.piashsarker">
+    package="com.runnergroup.www.piashsarker">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,44 +14,44 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.LoginActivity"
+            android:name="com.runnergroup.www.piashsarker.activity.LoginActivity"
             android:label="Login"
             android:noHistory="true"
             android:windowSoftInputMode="adjustResize|stateVisible|stateAlwaysHidden" />
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.Home"
+            android:name="com.runnergroup.www.piashsarker.activity.Home"
             android:label="Home" />
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.MemoCompose"
+            android:name="com.runnergroup.www.piashsarker.activity.MemoCompose"
             android:label="Compose"
             android:theme="@style/MyMaterialTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.MemoActivity" />
+                android:value="com.runnergroup.www.piashsarker.activity.MemoActivity" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.MemoInbox"
+            android:name="com.runnergroup.www.piashsarker.activity.MemoInbox"
             android:label="Inbox">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.MemoActivity" />
+                android:value="com.runnergroup.www.piashsarker.activity.MemoActivity" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.MemoOutbox"
+            android:name="com.runnergroup.www.piashsarker.activity.MemoOutbox"
             android:label="Outbox">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.MemoActivity" />
+                android:value="com.runnergroup.www.piashsarker.activity.MemoActivity" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.ContactActivity"
+            android:name="com.runnergroup.www.piashsarker.activity.ContactActivity"
             android:label="Contact">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.MemoActivity" />
+                android:value="com.runnergroup.www.piashsarker.activity.MemoActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -60,83 +60,83 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.LeaveInsert"
+            android:name="com.runnergroup.www.piashsarker.activity.LeaveInsert"
             android:label="Leave">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.HRActivity" />
+                android:value="com.runnergroup.www.piashsarker.activity.HRActivity" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.OnDutyInsert"
+            android:name="com.runnergroup.www.piashsarker.activity.OnDutyInsert"
             android:label="On Duty">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.HRActivity" />
+                android:value="com.runnergroup.www.piashsarker.activity.HRActivity" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.AttendenceReportActivity"
+            android:name="com.runnergroup.www.piashsarker.activity.AttendenceReportActivity"
             android:label="Report">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.MemoActivity" />
+                android:value="com.runnergroup.www.piashsarker.activity.MemoActivity" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.HRActivity"
+            android:name="com.runnergroup.www.piashsarker.activity.HRActivity"
             android:label="HR Data">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.Home" />
+                android:value="com.runnergroup.www.piashsarker.activity.Home" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.MemoActivity"
+            android:name="com.runnergroup.www.piashsarker.activity.MemoActivity"
             android:label="Memo">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.Home" />
+                android:value="com.runnergroup.www.piashsarker.activity.Home" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.ContactDetails"
+            android:name="com.runnergroup.www.piashsarker.activity.ContactDetails"
             android:label="Contact Details">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.ContactActivity" />
+                android:value="com.runnergroup.www.piashsarker.activity.ContactActivity" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.LeaveReport"
+            android:name="com.runnergroup.www.piashsarker.activity.LeaveReport"
             android:label="Leave">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.HRActivity" />
+                android:value="com.runnergroup.www.piashsarker.activity.HRActivity" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.OnDutyReport"
+            android:name="com.runnergroup.www.piashsarker.activity.OnDutyReport"
             android:label="On Duty">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.HRActivity" />
+                android:value="com.runnergroup.www.piashsarker.activity.HRActivity" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.TourInsert"
+            android:name="com.runnergroup.www.piashsarker.activity.TourInsert"
             android:label="Add Tour">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.HRActivity" />
+                android:value="com.runnergroup.www.piashsarker.activity.HRActivity" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.TourReport"
+            android:name="com.runnergroup.www.piashsarker.activity.TourReport"
             android:label="Tour Report">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.HRActivity" />
+                android:value="com.runnergroup.www.piashsarker.activity.HRActivity" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.InboxDetails"
+            android:name="com.runnergroup.www.piashsarker.activity.InboxDetails"
             android:label="Inbox Details">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.MemoInbox" />
+                android:value="com.runnergroup.www.piashsarker.activity.MemoInbox" />
         </activity>
-        <activity android:name="com.alt_project.www.piashsarker.activity.SplashActivity">
+        <activity android:name="com.runnergroup.www.piashsarker.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -144,58 +144,58 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.ChargeHandOver"
+            android:name="com.runnergroup.www.piashsarker.activity.ChargeHandOver"
             android:label="Charge Hand Over">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.Home" />
+                android:value="com.runnergroup.www.piashsarker.activity.Home" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.ChargeHandOverActivity"
+            android:name="com.runnergroup.www.piashsarker.activity.ChargeHandOverActivity"
             android:label="CHO">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.ChargeHandOver" />
+                android:value="com.runnergroup.www.piashsarker.activity.ChargeHandOver" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.PendingLeave"
+            android:name="com.runnergroup.www.piashsarker.activity.PendingLeave"
             android:label="Pending Leave">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.ChargeHandOver" />
+                android:value="com.runnergroup.www.piashsarker.activity.ChargeHandOver" />
         </activity>
         />
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.PendingTour"
+            android:name="com.runnergroup.www.piashsarker.activity.PendingTour"
             android:label="Pending Tour">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.ChargeHandOver" />
+                android:value="com.runnergroup.www.piashsarker.activity.ChargeHandOver" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.PendingOnDuty"
+            android:name="com.runnergroup.www.piashsarker.activity.PendingOnDuty"
             android:label="Pending On Duty">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.ChargeHandOver" />
+                android:value="com.runnergroup.www.piashsarker.activity.ChargeHandOver" />
         </activity>
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.SelectContactActivity"
+            android:name="com.runnergroup.www.piashsarker.activity.SelectContactActivity"
             android:label="Select Contact">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.MemoCompose" />
+                android:value="com.runnergroup.www.piashsarker.activity.MemoCompose" />
 
         </activity>
 
 
         <activity
-            android:name="com.alt_project.www.piashsarker.activity.MemoOutboxDetails"
+            android:name="com.runnergroup.www.piashsarker.activity.MemoOutboxDetails"
             android:label="Outbox Details">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alt_project.www.piashsarker.activity.MemoOutbox" />
+                android:value="com.runnergroup.www.piashsarker.activity.MemoOutbox" />
         </activity>
     </application>
 
